@@ -27,8 +27,8 @@
   - [ ] Quote - Focused on a Quote
   - [ ] Code - Focused on a Piece of Code
   - [ ] Product - Focused on a Product
-[ ] Tags
-  - [ ] Name, Description, Creation Date, Created By, Visible, Cover Image,
+[x] Tags
+  - [x] Name, Description, Creation Date, Created By, Visible, Cover Image,
         Background Color, Perma-link, Related To
 [ ] Users
   - [ ] Types: Viewer, Moderator, Author, Admin
