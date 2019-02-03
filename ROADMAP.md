@@ -16,7 +16,7 @@
 
 ## Models
 [ ] Posts
-  - [ ] Title, Body, Tags, Perma-link, Creation & Update Dates, Created By,
+  - [x] Title, Body, Tags, Perma-link, Creation & Update Dates, Created By,
       Edited By, Type, Published, Visible, Publish Date, Cover Image,
       Background Color, Related To
   - [ ] Comments
