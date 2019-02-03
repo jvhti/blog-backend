@@ -18,15 +18,14 @@ class CreatePostsTable extends Migration
             $table->string('permalink');
             $table->string('title');
             $table->text('body');
-            $table->text('text');
             $table->unsignedInteger('createdBy');
             $table->unsignedInteger('updatedBy')->nullable();
             $table->unsignedTinyInteger('type');
             $table->boolean('published');
             $table->boolean('visible');
-            $table->timestamp('publishDate');
-            $table->string('coverImg');
-            $table->char('backgroundColor',6);
+            $table->timestamp('publishDate')->nullable();
+            $table->string('coverImg')->nullable();
+            $table->char('backgroundColor',6)->nullable();
             $table->timestamps();
 
             $table->foreign('createdBy')->references('id')->on('users');
