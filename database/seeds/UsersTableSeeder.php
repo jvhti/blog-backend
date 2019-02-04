@@ -11,6 +11,11 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        $users = factory(App\User::class, 50)->make();
+        $users = factory(App\User::class, 100)->create();
+        foreach ($users as $user) {
+          if(rand(0,10) <= 7) continue;
+
+          factory(App\Report::class, rand(1, 20))->create(['reportUserID' => $user->id]);
+        }
     }
 }
