@@ -17,16 +17,16 @@ class CreateReportsTable extends Migration
             $table->increments('id');
             $table->timestamps();
             $table->ipAddress('ipAddress');
-            $table->double('trustFactor');
+            $table->double('trustFactor')->default(0);
             $table->unsignedInteger('createdBy')->nullable();
             $table->unsignedInteger('reviewedBy')->nullable();
             $table->unsignedInteger('reportCommentID')->nullable();
             $table->unsignedInteger('reportPostID')->nullable();
             $table->unsignedInteger('reportUserID')->nullable();
-            $table->boolean('confirmed');
-            $table->text('reviewerResponse');
-            $table->string('reviewerAction');
-            $table->string('type');
+            $table->boolean('confirmed')->default(false);
+            $table->text('reviewerResponse')->nullable();
+            $table->string('reviewerAction')->nullable();
+            $table->string('type')->default('other');
 
             $table->foreign('createdBy')->references('id')->on('users');
             $table->foreign('reviewedBy')->references('id')->on('users');

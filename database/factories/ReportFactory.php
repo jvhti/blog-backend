@@ -5,7 +5,7 @@ use Faker\Generator as Faker;
 $factory->define(App\Report::class, function (Faker $faker) {
     $userCount = \DB::table('users')->count();
     $reviewed = Array();
-    
+
     if(rand(0, 10) == 10)
       $reviewed = [
         'reviewedBy' => rand(1, $userCount),
@@ -16,6 +16,7 @@ $factory->define(App\Report::class, function (Faker $faker) {
     return array_merge([
       'ipAddress' => $faker->ipv4,
       'createdBy' => rand(1, $userCount),
-      'confirmed' => rand(0, 100) > 95
+      'confirmed' => rand(0, 100) > 95,
+      'trustFactor' => mt_rand() / mt_getrandmax()
     ], $reviewed);
 });
