@@ -20,10 +20,16 @@ class CreateCommentsTable extends Migration
             $table->unsignedInteger('editedBy')->nullable();
             $table->boolean('visible');
             $table->unsignedInteger('parentComment')->nullable();
+            $table->unsignedInteger('postID')->nullable();
             $table->ipAddress('ipAddress');
             $table->boolean('removed');
             $table->string('removedCause')->nullable();
             $table->timestamps();
+
+            $table->foreign('createdBy')->references('id')->on('users');
+            $table->foreign('editedBy')->references('id')->on('users');
+            $table->foreign('parentComment')->references('id')->on('comments');
+            $table->foreign('postID')->references('id')->on('posts');
         });
     }
 

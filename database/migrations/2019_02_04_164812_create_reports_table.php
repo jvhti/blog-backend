@@ -20,10 +20,19 @@ class CreateReportsTable extends Migration
             $table->double('trustFactor');
             $table->unsignedInteger('createdBy')->nullable();
             $table->unsignedInteger('reviewedBy')->nullable();
+            $table->unsignedInteger('reportCommentID')->nullable();
+            $table->unsignedInteger('reportPostID')->nullable();
+            $table->unsignedInteger('reportUserID')->nullable();
             $table->boolean('confirmed');
             $table->text('reviewerResponse');
             $table->string('reviewerAction');
             $table->string('type');
+
+            $table->foreign('createdBy')->references('id')->on('users');
+            $table->foreign('reviewedBy')->references('id')->on('users');
+            $table->foreign('reportUserID')->references('id')->on('users');
+            $table->foreign('reportCommentID')->references('id')->on('comments');
+            $table->foreign('reportPostID')->references('id')->on('posts');
         });
     }
 
