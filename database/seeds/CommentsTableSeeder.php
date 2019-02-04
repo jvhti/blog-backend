@@ -12,9 +12,11 @@ class CommentsTableSeeder extends Seeder
     public function run($extra = [])
     {
         $comments = factory(App\Comment::class, rand(1, $extra['max']))->create(['postID' => $extra['postID']]);
+        
         foreach ($comments as $comment) {
-          if(rand(0,10) > 7)
-            factory(App\Report::class, rand(1, 3))->create(['reportCommentID' => $comment->id]);
+          if(rand(0,10) <= 7) continue;
+          factory(App\Report::class, rand(1, 3))->create(['reportCommentID' => $comment->id]);
+          factory(App\Report::class, rand(1, 2))->states(['reviewed'])->create(['reportCommentID' => $comment->id]);
         }
     }
 }
