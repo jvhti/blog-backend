@@ -11,7 +11,7 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        $users = factory(App\User::class, 100)->create();
+        $users = factory(App\User::class, 25)->create();
         foreach ($users as $user) {
           if(rand(0,10) <= 7) continue;
 
