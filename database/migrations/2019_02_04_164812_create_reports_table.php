@@ -18,21 +18,21 @@ class CreateReportsTable extends Migration
             $table->timestamps();
             $table->ipAddress('ipAddress');
             $table->double('trustFactor')->default(0);
-            $table->unsignedInteger('createdBy')->nullable();
-            $table->unsignedInteger('reviewedBy')->nullable();
-            $table->unsignedInteger('reportCommentID')->nullable();
-            $table->unsignedInteger('reportPostID')->nullable();
-            $table->unsignedInteger('reportUserID')->nullable();
+            $table->unsignedInteger('createdBy_user_id')->nullable();
+            $table->unsignedInteger('reviewedBy_user_id')->nullable();
+            $table->unsignedInteger('reportedComment_id')->nullable();
+            $table->unsignedInteger('reportedPost_id')->nullable();
+            $table->unsignedInteger('reportedUser_id')->nullable();
             $table->boolean('confirmed')->default(false);
             $table->text('reviewerResponse')->nullable();
             $table->string('reviewerAction')->nullable();
             $table->string('type')->default('other');
 
-            $table->foreign('createdBy')->references('id')->on('users');
-            $table->foreign('reviewedBy')->references('id')->on('users');
-            $table->foreign('reportUserID')->references('id')->on('users');
-            $table->foreign('reportCommentID')->references('id')->on('comments');
-            $table->foreign('reportPostID')->references('id')->on('posts');
+            $table->foreign('createdBy_user_id')->references('id')->on('users');
+            $table->foreign('reviewedBy_user_id')->references('id')->on('users');
+            $table->foreign('reportedUser_id')->references('id')->on('users');
+            $table->foreign('reportedComment_id')->references('id')->on('comments');
+            $table->foreign('reportedPost_id')->references('id')->on('posts');
         });
     }
 

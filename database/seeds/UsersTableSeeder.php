@@ -15,8 +15,8 @@ class UsersTableSeeder extends Seeder
         foreach ($users as $user) {
           if(rand(0,10) <= 7) continue;
 
-          factory(App\Report::class, rand(1, 20))->create(['reportUserID' => $user->id]);
-          factory(App\Report::class, rand(1, 2))->states(['reviewed'])->create(['reportUserID' => $user->id]);
+          factory(App\Report::class, rand(1, 20))->create(['reportedUser_id' => $user->id]);
+          factory(App\Report::class, rand(1, 2))->states(['reviewed'])->create(['reportedUser_id' => $user->id]);
         }
     }
 }

@@ -12,14 +12,14 @@ class PostsTableSeeder extends Seeder
     public function run()
     {
         $posts = factory(App\Post::class, 100)->create();
-        
+
         foreach ($posts as $post) {
           if(rand(0,10) > 7){
-            factory(App\Report::class, rand(1, 20))->create(['reportPostID' => $post->id]);
-            factory(App\Report::class, rand(1, 5))->states(['reviewed'])->create(['reportPostID' => $post->id]);
+            factory(App\Report::class, rand(1, 20))->create(['reportedPost_id' => $post->id]);
+            factory(App\Report::class, rand(1, 5))->states(['reviewed'])->create(['reportedPost_id' => $post->id]);
           }
           if(rand(0,10) < 7)
-            $this->call(CommentsTableSeeder::class, ['postID' => $post->id, 'max' => rand(1, 50)]);
+            $this->call(CommentsTableSeeder::class, ['post_id' => $post->id, 'max' => rand(1, 50)]);
         }
     }
 
@@ -28,7 +28,7 @@ class PostsTableSeeder extends Seeder
         $this->resolve($class)->run($extra);
 
         if (isset($this->command)) {
-            $this->command->getOutput()->writeln("    <info>Seeded Comments for Post: </info>".$extra['postID']);
+            $this->command->getOutput()->writeln("    <info>Seeded Comments for Post: </info>".$extra['post_id']);
         }
     }
 }

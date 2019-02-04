@@ -17,14 +17,14 @@ class CreateTagsTable extends Migration
             $table->increments('id');
             $table->string('permalink');
             $table->string('name');
-            $table->text('description');
-            $table->unsignedInteger('createdBy');
+            $table->text('description')->nullable();
+            $table->unsignedInteger('createdBy_user_id');
             $table->boolean('visible');
-            $table->string('coverImg');
-            $table->char('backgroundColor', 6);
+            $table->string('coverImg')->nullable();
+            $table->char('backgroundColor', 6)->nullable();
             $table->timestamps();
 
-            $table->foreign('createdBy')->references('id')->on('users');
+            $table->foreign('createdBy_user_id')->references('id')->on('users');
         });
     }
 
