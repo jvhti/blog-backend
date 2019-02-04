@@ -15,6 +15,6 @@ $factory->define(App\Post::class, function (Faker $faker) {
         'visible' => rand(0, 100) < 75,
         'publishDate' => $faker->dateTime,
         'coverImg' => null,
-        'backgroundColor' => $faker->hexcolor,
+        'backgroundColor' => ltrim($faker->hexcolor, '#'),
     ];
 });
