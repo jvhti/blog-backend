@@ -11,6 +11,6 @@ class CommentTableSeeder extends Seeder
      */
     public function run()
     {
-        $posts = factory(App\Post::class, 50)->make();
+        $comment = factory(App\Comment::class, 50)->make();
     }
 }
