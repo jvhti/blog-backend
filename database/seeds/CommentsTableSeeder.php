@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class TagTableSeeder extends Seeder
+class CommentsTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,6 +11,6 @@ class TagTableSeeder extends Seeder
      */
     public function run()
     {
-        $posts = factory(App\Post::class, 25)->make();
+        $comment = factory(App\Comment::class, 50)->create();
     }
 }
