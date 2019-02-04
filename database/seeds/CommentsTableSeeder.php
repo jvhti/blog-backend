@@ -9,9 +9,9 @@ class CommentsTableSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
+    public function run($extra = [])
     {
-        $comments = factory(App\Comment::class, 50)->create();
+        $comments = factory(App\Comment::class, rand(1, $extra['max']))->create(['postID' => $extra['postID']]);
         foreach ($comments as $comment) {
           if(rand(0,10) > 7)
             factory(App\Report::class, rand(1, 3))->create(['reportCommentID' => $comment->id]);
