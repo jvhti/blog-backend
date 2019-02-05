@@ -52,6 +52,44 @@ class PostTest extends TestCase
          break;
        }
 
-       $this->assertTrue($found);
+       $this->assertTrue($found, 'Post not found on Author Posts List');
    }
+
+   public function testPostHasTags()
+   {
+      $tag = factory(App\Tag::class)->create();
+      $post = factory(App\Post::class)->create();
+
+      $post = App\Post::find($post->id);
+
+      $post->tags()->save($tag);
+
+      $this->assertCount(1, $post->tags);
+
+      $this->assertCount(1, $post->tags[0]->posts);
+
+      $found = false;
+      foreach ($post->tags[0]->posts as $p) {
+       if($p->id != $post->id) continue;
+       $found = true;
+       break;
+      }
+
+      $this->assertTrue($found, 'Post not found on Tag Posts List');
+  }
+
+  public function testPostHasManyTags()
+  {
+     $post = App\Post::find(rand(0, App\Post::count()));
+
+     foreach ($post->tags as $tag) {
+       $found = false;
+       foreach ($post->tags[0]->posts as $p) {
+        if($p->id != $post->id) continue;
+        $found = true;
+        break;
+       }
+       $this->assertTrue($found, 'Post not found on Tag '.$tag->id.' Posts List');
+     }
+ }
 }
