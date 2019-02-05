@@ -20,6 +20,12 @@ class PostsTableSeeder extends Seeder
           }
           if(rand(0,10) < 7)
             $this->call(CommentsTableSeeder::class, ['post_id' => $post->id, 'max' => rand(1, 50)]);
+
+          $tagCount = App\Tag::count();
+          $postTags = rand(2,20);
+
+          for($i = 0; $i < $postTags; ++$i)
+            $post->tags()->save(App\Tag::find(rand(1, $tagCount)));
         }
     }
 
